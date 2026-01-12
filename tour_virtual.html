@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tour Virtual 5 Ambientes - Concepto</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      
+      <a-assets>
+        <img id="img_Entrada" src="https://conceptove.github.io/Concepto-Furnitures/Entrada.png">
+        <img id="img_Cocina_1" src="https://conceptove.github.io/Concepto-Furnitures/Cocina_1.png">
+        <img id="img_Cocina_2" src="https://conceptove.github.io/Concepto-Furnitures/Cocina_2.png">
+        <img id="img_Comedor" src="https://conceptove.github.io/Concepto-Furnitures/Sala_1.png">
+        <img id="img_Sala" src="https://conceptove.github.io/Concepto-Furnitures/Sala_2.png">
+      </a-assets>
+
+      <a-sky id="escena-360" src="https://conceptove.github.io/Concepto-Furnitures/Entrada.png" rotation="0 -90 0"></a-sky>
+
+      <a-camera>
+        <a-cursor fuse="false" color="#FF0000"></a-cursor>
+      </a-camera>
+
+      <a-sphere class="btn-Cocina_1" position="3 1 -4" radius="0.3" color="yellow" onclick="irA('https://conceptove.github.io/Concepto-Furnitures/Cocina_1.png')">
+        <a-text value="Ir a Cocina" align="center" position="0 0.8 0"></a-text>
+      </a-sphere>
+
+      <a-sphere class="btn-Cocina_2" position="-4 1 2" radius="0.3" color="green" onclick="irA('https://conceptove.github.io/Concepto-Furnitures/Cocina_2.png')">
+        <a-text value="Ir al Comedor" align="center" position="0 0.8 0"></a-text>
+      </a-sphere>
+
+      <a-sphere class="btn-Comedor" position="-3 1 4" radius="0.3" color="cyan" visible="false" onclick="irA('https://conceptove.github.io/Concepto-Furnitures/Sala_1.png')">
+        <a-text value="Ir a Sala" align="center" position="0 0.8 0"></a-text>
+      </a-sphere>
+
+      <a-sphere class="btn-Sala" position="4 1 -2" radius="0.3" color="orange" visible="false" onclick="irA('https://conceptove.github.io/Concepto-Furnitures/Sala_2.png')">
+        <a-text value="Ir a la Cocina" align="center" position="0 0.8 0"></a-text>
+      </a-sphere>
+
+      <a-sphere class="btn-Cocina" position="0 1 5" radius="0.3" color="red" visible="false" onclick="irA('https://conceptove.github.io/Concepto-Furnitures/Cocina_2.png')">
+        <a-text value="Regresar al Comedor" align="center" position="0 0.8 0"></a-text>
+      </a-sphere>
+
+    </a-scene>
+
+    <script>
+      function irA(destino) {
+        const sky = document.querySelector('#escena-360');
+        sky.setAttribute('src', destino);
+
+        // Ocultamos TODOS los botones primero
+        const todosLosBotones = document.querySelectorAll('a-sphere');
+        todosLosBotones.forEach(btn => {
+          btn.setAttribute('visible', 'false');
+          btn.setAttribute('scale', '0 0 0');
+        });
+
+        // Activamos solo los botones del ambiente actual
+        let claseAActivar = "";
+        if (destino === 'https://conceptove.github.io/Concepto-Furnitures/Entrada.png') claseAActivar = ".btn-Entrada";
+        if (destino === 'https://conceptove.github.io/Concepto-Furnitures/Cocina_1.png') claseAActivar = ".btn-Cocina_1";
+        if (destino === 'https://conceptove.github.io/Concepto-Furnitures/Cocina_2.png') claseAActivar = ".btn-Cocina_2";
+        if (destino === 'https://conceptove.github.io/Concepto-Furnitures/Sala_1.png') claseAActivar = ".btn-Comedor";
+        if (destino === 'https://conceptove.github.io/Concepto-Furnitures/Sala_2.png') claseAActivar = ".btn-Sala";
+
+        const botonesNuevos = document.querySelectorAll(claseAActivar);
+        botonesNuevos.forEach(btn => {
+          btn.setAttribute('visible', 'true');
+          btn.setAttribute('scale', '1 1 1');
+        });
+      }
+    </script>
+  </body>
+</html>
