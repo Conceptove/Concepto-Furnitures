@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Tour Virtual 5 Ambientes - Concepto</title>
+    <title>Tour Virtual Concepto - Navegación Táctil</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   </head>
   <body>
@@ -19,36 +19,36 @@
       <a-sky id="escena-360" src="#img_Entrada" rotation="0 -90 0"></a-sky>
 
       <a-camera>
-        <a-cursor fuse="false" color="#FF0000"></a-cursor>
+        <a-cursor raycaster="objects: .clickable" cursor="rayOrigin: mouse" color="#FF0000" opacity="0.5"></a-cursor>
       </a-camera>
 
-      <a-sphere class="btn-Entrada" position="3 1 -4" radius="0.3" color="yellow" 
+      <a-sphere class="btn-Entrada clickable" position="3 1 -4" radius="0.3" color="yellow" 
                 onclick="irA('img_Cocina_1')">
-        <a-text value="Ir a Cocina" align="center" position="0 0.8 0"></a-text>
+        <a-text value="Ir a Cocina" align="center" position="0 0.8 0" scale="1.5 1.5 1.5"></a-text>
       </a-sphere>
 
-      <a-sphere class="btn-Cocina_1" position="-4 1 2" radius="0.3" color="green" visible="false" scale="0 0 0"
+      <a-sphere class="btn-Cocina_1 clickable" position="-4 1 2" radius="0.3" color="green" visible="false" scale="0 0 0"
                 onclick="irA('img_Cocina_2')">
-        <a-text value="Ir a Cocina 2" align="center" position="0 0.8 0"></a-text>
+        <a-text value="Ir a Cocina 2" align="center" position="0 0.8 0" scale="1.5 1.5 1.5"></a-text>
       </a-sphere>
-      <a-sphere class="btn-Cocina_1" position="0 1 4" radius="0.3" color="white" visible="false" scale="0 0 0"
+      <a-sphere class="btn-Cocina_1 clickable" position="0 1 4" radius="0.3" color="white" visible="false" scale="0 0 0"
                 onclick="irA('img_Entrada')">
-        <a-text value="Volver Entrada" align="center" position="0 0.8 0"></a-text>
+        <a-text value="Volver Entrada" align="center" position="0 0.8 0" scale="1.5 1.5 1.5"></a-text>
       </a-sphere>
 
-      <a-sphere class="btn-Cocina_2" position="-3 1 4" radius="0.3" color="cyan" visible="false" scale="0 0 0"
+      <a-sphere class="btn-Cocina_2 clickable" position="-3 1 4" radius="0.3" color="cyan" visible="false" scale="0 0 0"
                 onclick="irA('img_Sala_1')">
-        <a-text value="Ir a Sala 1" align="center" position="0 0.8 0"></a-text>
+        <a-text value="Ir a Sala 1" align="center" position="0 0.8 0" scale="1.5 1.5 1.5"></a-text>
       </a-sphere>
 
-      <a-sphere class="btn-Sala_1" position="4 1 -2" radius="0.3" color="orange" visible="false" scale="0 0 0"
+      <a-sphere class="btn-Sala_1 clickable" position="4 1 -2" radius="0.3" color="orange" visible="false" scale="0 0 0"
                 onclick="irA('img_Sala_2')">
-        <a-text value="Ir a Sala 2" align="center" position="0 0.8 0"></a-text>
+        <a-text value="Ir a Sala 2" align="center" position="0 0.8 0" scale="1.5 1.5 1.5"></a-text>
       </a-sphere>
 
-      <a-sphere class="btn-Sala_2" position="0 1 5" radius="0.3" color="red" visible="false" scale="0 0 0"
+      <a-sphere class="btn-Sala_2 clickable" position="0 1 5" radius="0.3" color="red" visible="false" scale="0 0 0"
                 onclick="irA('img_Cocina_2')">
-        <a-text value="Regresar a Cocina 2" align="center" position="0 0.8 0"></a-text>
+        <a-text value="Regresar a Cocina 2" align="center" position="0 0.8 0" scale="1.5 1.5 1.5"></a-text>
       </a-sphere>
 
     </a-scene>
@@ -56,19 +56,16 @@
     <script>
       function irA(idDestino) {
         const sky = document.querySelector('#escena-360');
-        
-        // Cambiamos la imagen del cielo usando el ID del asset (#)
         sky.setAttribute('src', '#' + idDestino);
 
-        // 1. OCULTAR TODOS los botones
-        const todosLosBotones = document.querySelectorAll('a-sphere');
+        // Ocultar todos los botones
+        const todosLosBotones = document.querySelectorAll('.clickable');
         todosLosBotones.forEach(btn => {
           btn.setAttribute('visible', 'false');
           btn.setAttribute('scale', '0 0 0');
         });
 
-        // 2. MOSTRAR solo los botones que corresponden al nuevo ambiente
-        // Buscamos la clase que coincida con el destino (ej: .btn-img_Cocina_1)
+        // Activar botones del nuevo ambiente
         const claseAActivar = ".btn-" + idDestino.replace('img_', ''); 
         const botonesNuevos = document.querySelectorAll(claseAActivar);
         
