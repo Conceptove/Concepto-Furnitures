@@ -2,11 +2,32 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Tour Virtual Concepto - Navegación Táctil</title>
+    <title>Tour Virtual Concepto - Pro</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <style>
+      /* Estilo para el botón de pantalla completa */
+      .fullscreen-btn {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        border: 2px solid white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: sans-serif;
+        font-size: 14px;
+      }
+      .fullscreen-btn:hover { background: rgba(0, 0, 0, 0.8); }
+    </style>
   </head>
   <body>
-    <a-scene>
+
+    <button class="fullscreen-btn" onclick="toggleFullScreen()">Ver en Pantalla Completa</button>
+
+    <a-scene id="main-scene" embedded>
       
       <a-assets>
         <img id="img_Entrada" src="https://conceptove.github.io/Concepto-Furnitures/Entrada.png">
@@ -18,61 +39,71 @@
 
       <a-sky id="escena-360" src="#img_Entrada" rotation="0 -90 0"></a-sky>
 
-      <a-camera>
-        <a-cursor raycaster="objects: .clickable" cursor="rayOrigin: mouse" color="#FF0000" opacity="0.5"></a-cursor>
+      <a-camera look-controls="magicWindowTrackingEnabled: true; touchEnabled: true; mouseEnabled: true">
+        <a-cursor raycaster="objects: .clickable" cursor="rayOrigin: mouse" color="#FF0000" opacity="0.6"></a-cursor>
       </a-camera>
 
-      <a-sphere class="btn-Entrada clickable" position="3 1 -4" radius="0.3" color="yellow" 
-                onclick="irA('img_Cocina_1')">
+      <a-sphere class="btn-Entrada clickable" position="3 1 -4" radius="0.3" color="yellow" onclick="irA('img_Cocina_1')">
         <a-text value="Ir a Cocina" align="center" position="0 0.8 0" scale="1.5 1.5 1.5"></a-text>
       </a-sphere>
 
-      <a-sphere class="btn-Cocina_1 clickable" position="-4 1 2" radius="0.3" color="green" visible="false" scale="0 0 0"
-                onclick="irA('img_Cocina_2')">
+      <a-sphere class="btn-Cocina_1 clickable" position="-4 1 2" radius="0.3" color="green" visible="false" scale="0 0 0" onclick="irA('img_Cocina_2')">
         <a-text value="Ir a Cocina 2" align="center" position="0 0.8 0" scale="1.5 1.5 1.5"></a-text>
       </a-sphere>
-      <a-sphere class="btn-Cocina_1 clickable" position="0 1 4" radius="0.3" color="white" visible="false" scale="0 0 0"
-                onclick="irA('img_Entrada')">
+      <a-sphere class="btn-Cocina_1 clickable" position="0 1 4" radius="0.3" color="white" visible="false" scale="0 0 0" onclick="irA('img_Entrada')">
         <a-text value="Volver Entrada" align="center" position="0 0.8 0" scale="1.5 1.5 1.5"></a-text>
       </a-sphere>
 
-      <a-sphere class="btn-Cocina_2 clickable" position="-3 1 4" radius="0.3" color="cyan" visible="false" scale="0 0 0"
-                onclick="irA('img_Sala_1')">
+      <a-sphere class="btn-Cocina_2 clickable" position="-3 1 4" radius="0.3" color="cyan" visible="false" scale="0 0 0" onclick="irA('img_Sala_1')">
         <a-text value="Ir a Sala 1" align="center" position="0 0.8 0" scale="1.5 1.5 1.5"></a-text>
       </a-sphere>
 
-      <a-sphere class="btn-Sala_1 clickable" position="4 1 -2" radius="0.3" color="orange" visible="false" scale="0 0 0"
-                onclick="irA('img_Sala_2')">
+      <a-sphere class="btn-Sala_1 clickable" position="4 1 -2" radius="0.3" color="orange" visible="false" scale="0 0 0" onclick="irA('img_Sala_2')">
         <a-text value="Ir a Sala 2" align="center" position="0 0.8 0" scale="1.5 1.5 1.5"></a-text>
       </a-sphere>
 
-      <a-sphere class="btn-Sala_2 clickable" position="0 1 5" radius="0.3" color="red" visible="false" scale="0 0 0"
-                onclick="irA('img_Cocina_2')">
+      <a-sphere class="btn-Sala_2 clickable" position="0 1 5" radius="0.3" color="red" visible="false" scale="0 0 0" onclick="irA('img_Cocina_2')">
         <a-text value="Regresar a Cocina 2" align="center" position="0 0.8 0" scale="1.5 1.5 1.5"></a-text>
       </a-sphere>
 
     </a-scene>
 
     <script>
+      // Función para cambiar de habitación
       function irA(idDestino) {
         const sky = document.querySelector('#escena-360');
         sky.setAttribute('src', '#' + idDestino);
 
-        // Ocultar todos los botones
-        const todosLosBotones = document.querySelectorAll('.clickable');
-        todosLosBotones.forEach(btn => {
+        const todos = document.querySelectorAll('.clickable');
+        todos.forEach(btn => {
           btn.setAttribute('visible', 'false');
           btn.setAttribute('scale', '0 0 0');
         });
 
-        // Activar botones del nuevo ambiente
         const claseAActivar = ".btn-" + idDestino.replace('img_', ''); 
-        const botonesNuevos = document.querySelectorAll(claseAActivar);
-        
-        botonesNuevos.forEach(btn => {
+        const nuevos = document.querySelectorAll(claseAActivar);
+        nuevos.forEach(btn => {
           btn.setAttribute('visible', 'true');
           btn.setAttribute('scale', '1 1 1');
         });
+      }
+
+      // Función para Pantalla Completa
+      function toggleFullScreen() {
+        const scene = document.querySelector('a-scene');
+        if (!document.fullscreenElement) {
+          if (scene.requestFullscreen) {
+            scene.requestFullscreen();
+          } else if (scene.webkitRequestFullscreen) { /* Safari */
+            scene.webkitRequestFullscreen();
+          } else if (scene.msRequestFullscreen) { /* IE11 */
+            scene.msRequestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
       }
     </script>
   </body>
