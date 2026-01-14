@@ -28,13 +28,13 @@
     <a-scene id="main-scene" embedded>
       
       <a-assets>
-        <img id="img_pasillo" src="https://github.com/Conceptove/Concepto-Furnitures.git/Pasillo.png">
-        <img id="img_cocina" src="https://github.com/Conceptove/Concepto-Furnitures.git/Cocina.png">
-        <img id="img_comedor" src="https://github.com/Conceptove/Concepto-Furnitures.git/Comedor.png">
-        <img id="img_sala" src="https://github.com/Conceptove/Concepto-Furnitures.git/Sala.png">
+        <img id="img_pasillo" src="https://conceptove.github.io/Concepto-Furnitures/Pasillo.png">
+        <img id="img_cocina" src="https://conceptove.github.io/Concepto-Furnitures/Cocina.png">
+        <img id="img_comedor" src="https://conceptove.github.io/Concepto-Furnitures/Comedor.png">
+        <img id="img_sala" src="https://conceptove.github.io/Concepto-Furnitures/Sala.png">
 
-        <img id="Adelante" src="https://github.com/Conceptove/Concepto-Furnitures.git/Arrow_right.png">
-        <img id="Atras" src="https://github.com/Conceptove/Concepto-Furnitures.git/Arrow_left.png">
+        <img id="Adelante" src="https://conceptove.github.io/Concepto-Furnitures/Arrow_right.png">
+        <img id="Atras" src="https://conceptove.github.io/Concepto-Furnitures/Arrow_left.png">
       </a-assets>
 
       <a-sky id="escena-360" src="#img_pasillo" rotation="0 -90 0"></a-sky>
