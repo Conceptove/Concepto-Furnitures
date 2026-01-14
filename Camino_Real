@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Camino Real</title>
+    <title>Tour Virtual - Camino Real</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <style>
       /* Estilo del botón de pantalla completa */
