@@ -82,11 +82,11 @@
 
     <a-scene id="main-scene" embedded>
       <a-assets>
-        <img id="vestier_1.png" src="https://conceptove.github.io/Concepto-Furnitures/Vestier_1.png">
-        <img id="vestier_2.png" src="https://conceptove.github.io/Concepto-Furnitures/Vestier_2.png">
+        <img id="Vestier_1.png" src="https://conceptove.github.io/Concepto-Furnitures/Vestier_1.png">
+        <img id="Vestier_2.png" src="https://conceptove.github.io/Concepto-Furnitures/Vestier_2.png">
       </a-assets>
 
-      <a-sky id="escena-360" src="#vestier_1" rotation="0 -90 0"></a-sky>
+      <a-sky id="escena-360" src="#Vestier_1" rotation="0 -90 0"></a-sky>
 
       <a-camera 
         look-controls="magicWindowTrackingEnabled: true; touchEnabled: true; mouseEnabled: true"; 
@@ -96,19 +96,19 @@
 
     <script>
       const mapaTour = {
-        'img_vestier_1': { 
+        'img_Vestier_1': { 
           nombre: 'Vestier', 
-          adelante: 'img_vestier_2', 
+          adelante: 'img_Vestier_2', 
           atras: null 
         },
-        'img_vestier_2': { 
+        'img_Vestier_2': { 
           nombre: 'Vestier', 
           adelante: null, 
-          atras: 'img_vestier_1' 
+          atras: 'img_Vestier_1' 
         }
       };
 
-      let habitacionActual = 'img_vestier_1';
+      let habitacionActual = 'img_Vestier_1';
 
       function navegar(direccion) {
         const destinoID = mapaTour[habitacionActual][direccion];
