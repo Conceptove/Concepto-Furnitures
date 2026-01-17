@@ -97,57 +97,13 @@
     </a-scene>
 
     <script>
-      const mapaTour = {
-        'img_pasillo': { 
-          nombre: 'Pasillo', 
-          adelante: 'img_cocina', 
-          atras: null 
-        },
-        'img_cocina': { 
-          nombre: 'Cocina', 
-          adelante: 'img_comedor', 
-          atras: 'img_pasillo' 
-        },
-        'img_comedor': { 
-          nombre: 'Comedor', 
-          adelante: 'img_sala', 
-          atras: 'img_cocina' 
-        },
-        'img_sala': { 
-          nombre: 'Sala', 
-          adelante: null, 
-          atras: 'img_comedor' 
-        }
-      };
-
-      let habitacionActual = 'img_pasillo';
-
-      function navegar(direccion) {
-        const destinoID = mapaTour[habitacionActual][direccion];
-        if (destinoID) {
-          actualizarEscena(destinoID);
-        }
-      }
-
-      function actualizarEscena(id) {
-        habitacionActual = id;
-        
-        // 1. Cambiar la imagen 360
-        document.querySelector('#escena-360').setAttribute('src', '#' + id);
-        
-        // 2. Actualizar el nombre en la etiqueta superior
-        document.querySelector('#room-name').innerText = mapaTour[id].nombre;
-
-        // 3. Lógica de visibilidad de los botones
-        const btnAtras = document.querySelector('#btn-atras');
-        const btnAdelante = document.querySelector('#btn-adelante');
-
-        // Mostrar u ocultar flecha izquierda
-        btnAtras.style.display = mapaTour[id].atras ? 'flex' : 'none';
-        
-        // Mostrar u ocultar flecha derecha
-        btnAdelante.style.display = mapaTour[id].adelante ? 'flex' : 'none';
-      }
+<script>
+/**
+ * (c) 2026 Concepto Furnitures. 
+ * PROTECTED CODE - DO NOT MODIFY
+ */
+const _0x412b=['img_pasillo','Pasillo','img_cocina','Cocina','img_comedor','Comedor','img_sala','Sala','#escena-360','innerText','#room-name','#btn-atras','#btn-adelante','flex','none','setAttribute','style','display'];const mapaTour={[_0x412b[0]]:{nombre:_0x412b[1],adelante:_0x412b[2],atras:null},[_0x412b[2]]:{nombre:_0x412b[3],adelante:_0x412b[4],atras:_0x412b[0]},[_0x412b[4]]:{nombre:_0x412b[5],adelante:_0x412b[6],atras:_0x412b[2]},[_0x412b[6]]:{nombre:_0x412b[7],adelante:null,atras:_0x412b[4]}};let habitacionActual=_0x412b[0];function navegar(_0x1e3a){const _0x5211=mapaTour[habitacionActual][_0x1e3a];if(_0x5211){actualizarEscena(_0x5211)}}function actualizarEscena(_0x2d8a){habitacionActual=_0x2d8a;const _0x3f12=document.querySelector(_0x412b[8]);_0x3f12[_0x412b[15]]('src','#'+_0x2d8a);document.querySelector(_0x412b[10])[_0x412b[9]]=mapaTour[_0x2d8a].nombre;const _0x1a2b=document.querySelector(_0x412b[11]);const _0x5c33=document.querySelector(_0x412b[12]);_0x1a2b[_0x412b[16]][_0x412b[17]]=mapaTour[_0x2d8a].atras?_0x412b[13]:_0x412b[14];_0x5c33[_0x412b[16]][_0x412b[17]]=mapaTour[_0x2d8a].adelante?_0x412b[13]:_0x412b[14]}window.onload=()=>{actualizarEscena(_0x412b[0])};
+</script>
     </script>
   </body>
 </html>
